@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Codealist_BackendModule>
+            <version>0.2.0</version>
+        </Codealist_BackendModule>
+    </modules>
+    <global>
+        <!--Declare the helpers of our module-->
+        <helpers>
+            <codealist_backendmodule>
+                <class>Codealist_BackendModule_Helper</class>
+            </codealist_backendmodule>
+        </helpers>
+        <!--Declare the blocks of our module-->
+        <blocks>
+            <codealist_backendmodule>
+                <class>Codealist_BackendModule_Block</class>
+            </codealist_backendmodule>
+        </blocks>
+        <!-- Define our resource setup script in order to create the table -->
+        <resources>
+            <codealist_backendmodule_setup>
+                <setup>
+                    <module>Codealist_BackendModule</module>
+                </setup>
+            </codealist_backendmodule_setup>
+            <!--Add the proper permissions to write using the model Mage::getModel('codealist_backendmodule/vendor') -->
+            <codealist_backendmodule_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </codealist_backendmodule_write>
+            <!--Add the proper permissions to read using the model Mage::getModel('codealist_backendmodule/vendor') -->
+            <codealist_backendmodule_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </codealist_backendmodule_read>
+        </resources>
+    </global>
+    <!--Declare the route for our controller-->
+    <admin>
+        <routers>
+            <!--Unique identifier-->
+            <codealist>
+                <use>admin</use>
+                <args>
+                    <module>Codealist_BackendModule</module>
+                    <frontName>codealist</frontName>
+                </args>
+            </codealist>
+        </routers>
+    </admin>
+
+    <!--Declare a layout update file-->
+    <adminhtml>
+        <layout>
+            <updates>
+                <!-- Module identifier -->
+                <codealist_backendmodule>
+                    <!-- Location of our layout file should be app/design/adminhtml/default/default/layout/codealist/backendmodule.xml -->
+                    <file>codealist/backendmodule.xml</file>
+                </codealist_backendmodule>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>
